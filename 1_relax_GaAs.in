@@ -1,0 +1,48 @@
+! Relax does not support USSP; modifications must be made to change to PAW
+&control
+	title = 'Electron Relaxation for GaAs',
+	calculation = 'vc-relax',
+	prefix = 'GaAs',
+	pseudo_dir = './',
+	outdir = '/OUTPUT/'
+	etot_conv_thr = 1.d-4,
+	ekin_conv_thr = 1.d-4
+/
+
+&system
+	ibrav = 2,
+	celldm(1) = 7.6836264,
+	nat = 2,
+	ntyp = 2,
+	nbnd = 36,
+	ecutwfc = 33,
+	ecutrho = 180,
+	nr1b = 20, nr2b = 20, nr3b = 20,
+	noncolin= .TRUE.
+	lspinorb=.TRUE.
+/
+
+&electrons
+	mixing_mode = 'plain'
+	mixing_beta = 0.7
+	conv_thr = 1e-8
+	diago_david_ndim = 4
+/
+
+&ions
+/
+
+&cell
+	cell_dofree = 'all'
+/
+
+ATOMIC_SPECIES
+Ga 2.0d0 Ga.rel-pbe-dn-rrkjus_psl.0.2.UPF
+As 1.5d0 As.rel-pbe-n-rrkjus_psl.0.2.UPF
+
+ATOMIC_POSITIONS
+Ga	0.00	0.00	0.00
+As	0.75	0.75	0.75
+
+K_POINTS(automatic)
+8 8 8 0 0 0 

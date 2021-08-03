@@ -1,0 +1,56 @@
+&control
+	title = 'Electron Ground State for GaAs_1',
+	calculation = 'cp',
+	restart_mode = 'restart',
+	ndr = 51,
+	ndw = 51,
+	nstep = 50, 
+	iprint = 10,
+	isave = 100,
+	tstress = .TRUE.,
+	tprnfor = .TRUE.,
+	dt = 1.0d0,
+	etot_conv_thr = 1.d-4,
+	ekin_conv_thr = 1.d-4,
+	prefix = 'GaAs',
+	pseudo_dir = './',
+	outdir = '/OUTPUT/',
+/
+
+&system
+	ibrav = 2,
+	celldm(1) = 7.6836264,
+	nat = 2,
+	ntyp = 2,
+	nbnd = 36,
+	ecutwfc = 33,
+	ecutrho = 180
+	nr1b=10, nr2b=10, nr3b=10
+	noncolin=.true.,
+	lspinorb=.true.,
+/
+
+&electrons
+	emass = 400.d0,
+	emass_cutoff = 2.5d0,
+	electron_dynamics = 'damp'
+	electron_damping = 1.591798051
+
+/
+
+&ions
+	ion_dynamics = 'none'
+/
+
+&cell
+	cell_dynamics = 'none',
+	press = 0.0d0,
+/
+
+ATOMIC_SPECIES
+Ga 2.0d0 Ga.rel-pbe-dn-rrkjus_psl.0.2.UPF
+As 1.5d0 As.rel-pbe-n-rrkjus_psl.0.2.UPF
+
+ATOMIC_POSITIONS
+Ga	0.00	0.00	0.00
+As	0.75	0.75	0.75
